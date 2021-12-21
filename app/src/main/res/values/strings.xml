@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Video App</string>
+    <string name="title_home">Home</string>
+    <string name="title_post">Post</string>
+    <string name="title_videos">Videos</string>
+    <string name="title_account">Account</string>
+    <string name="str_email_hint">email</string>
+    <string name="str_password_hint">Password</string>
+    <string name="str_name">name</string>
+    <string name="sign_in_button">Sign in</string>
+    <string name="sign_in_back_button">already have account? login</string>
+    <string name="sign_up_go_button">Don\'t have an account?Sign Up</string>
+    <string name="sign_up_button">Sign Up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
