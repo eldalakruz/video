@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.post.PostFragment">
 
+
     <TextView
         android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
@@ -19,4 +20,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/firebaseImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/browse_file_img" />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/margin_eight"
+        android:contentDescription="@string/str_choose_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/browse_file_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_eight"
+
+        android:background="@color/teal_700"
+        android:contentDescription="@string/browse_file"
+        android:src="@drawable/ic_take_img"
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner"
+        tools:layout_editor_absoluteX="206dp" />
+
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:layout_marginStart="@dimen/margin_eight"
+        android:layout_marginEnd="@dimen/margin_eight"
+        android:layout_marginTop="@dimen/margin_eight"
+        android:background="@color/teal_700"
+        android:text="@string/upload_button"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="206dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

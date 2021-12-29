@@ -11,7 +11,20 @@
     <string name="sign_in_back_button">already have account? login</string>
     <string name="sign_up_go_button">Don\'t have an account?Sign Up</string>
     <string name="sign_up_button">Sign Up</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout_button">Logout</string>
+    <string name="pic_button">Images</string>
+    <string name="video_button">Videos</string>
+    <string name="upload_button">Upload</string>
+    <string name="str_choose_type">choose type of the content which is image or video</string>
+    <string name="browse_file">browse and select the target file to upload</string>
+    <string name="edit_button">Edit Account</string>
+    <string name="edit_update_button">Update</string>
+    <string name="update_cancel_button">Cancel</string>
+
+    <string-array name="list_item">
+        <item>image</item>
+        <item>video</item>
+    </string-array>
 
 </resources>

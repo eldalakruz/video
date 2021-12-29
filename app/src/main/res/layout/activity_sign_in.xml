@@ -55,11 +55,11 @@
         android:ems="10"
         android:text="@string/sign_in_button"
         android:textColor="#757575"
-        android:textSize="20sp" />
+        android:textSize="18sp"
+        android:onClick="signIn"/>
 
     <Button
         android:id="@+id/signUpButton"
-        android:onClick="goSignUp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
@@ -70,8 +70,9 @@
         android:layout_marginBottom="@dimen/margin_eight"
         android:background="@color/black"
         android:ems="10"
+        android:onClick="goSignUp"
         android:text="@string/sign_up_go_button"
         android:textColor="#757575"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "397222709933",
+    "firebase_url": "https://videos-6d6ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "videos-6d6ca",
+    "storage_bucket": "videos-6d6ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397222709933:android:49eadb03e9a7eb95dfd424",
+        "android_client_info": {
+          "package_name": "com.example.videoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397222709933-2mnqgbbv0ucplg17an6ju8n6b57e5qsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQUUBrn2RoE6m2jedlvsBSesTmyxqYXcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397222709933-2mnqgbbv0ucplg17an6ju8n6b57e5qsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
