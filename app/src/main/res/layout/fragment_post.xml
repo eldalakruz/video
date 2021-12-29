@@ -22,9 +22,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/firebaseImg"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:id="@+id/firebaseImg"
+        android:layout_margin="@dimen/margin_eight"
+        android:contentDescription="@string/selected_image_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/browse_file_img" />
@@ -45,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_eight"
-
         android:background="@color/teal_700"
         android:contentDescription="@string/browse_file"
         android:src="@drawable/ic_take_img"
