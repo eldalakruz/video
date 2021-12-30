@@ -53,16 +53,12 @@ class PostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        postViewModel =
-            ViewModelProvider(this)[PostViewModel::class.java]
+
 
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        postViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
 
         storePost = FirebaseStorage.getInstance().reference.child("postImg")
 
@@ -73,9 +69,17 @@ class PostFragment : Fragment() {
 
         _binding!!.browseFileImg.setOnClickListener {
             selectImg()
+
         }
         _binding!!.uploadButton.setOnClickListener {
-            uploadImg()
+
+            if (imageUri!= null) {
+                uploadImg()
+            }
+            else{
+                Toast.makeText(this@PostFragment.requireContext(), " please select image",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
         return root
@@ -90,7 +94,7 @@ class PostFragment : Fragment() {
 
     private fun uploadImg() {
 
-        if ( myUrl != null) {
+
             val progressDialog: ProgressDialog = ProgressDialog(this@PostFragment.requireContext())
             progressDialog.setTitle("Uploading")
             progressDialog.setMessage("Please wait")
@@ -145,12 +149,9 @@ class PostFragment : Fragment() {
             }
 
         }
-        else{
-            Toast.makeText(this@PostFragment.requireContext(), "Please select image",
-                Toast.LENGTH_SHORT).show()
-        }
 
-    }
+
+
 
     private fun selectImg() {
 
