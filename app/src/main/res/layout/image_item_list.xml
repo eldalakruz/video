@@ -10,6 +10,5 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:scaleType="centerCrop"
-        android:src=""
-        app:srcCompat="@drawable/ic_account" />
+         />
 </LinearLayout>

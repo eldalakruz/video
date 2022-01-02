@@ -1,36 +1,49 @@
 package com.example.videoapp.ui.home
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.core.view.View
+import com.example.videoapp.R
+import com.squareup.picasso.Picasso
 
-class PostAdapter( private  var postList : MutableList<PostClass>) :
+class PostAdapter( private  val mContext :Context, mPost : List<PostClass> ) :
     RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.PostViewHolder {
-        TODO("Not yet implemented")
+
+    private var mPost : List<PostClass>? = null
+
+    init {
+        this.mPost = mPost
     }
 
-    override fun onBindViewHolder(holder: PostAdapter.PostViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+
+        val view = LayoutInflater.from(mContext).inflate(R.layout.image_item_list, parent,
+            false)
+        return PostViewHolder(view)
+
+    }
+
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+
+        val postClass : PostClass = mPost!![position]
+        Picasso.get().load(postClass.getPost()).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return mPost!!.size
     }
 
-    class PostViewHolder(v : android.view.View) : RecyclerView.ViewHolder(v),
-        android.view.View.OnClickListener{
+   inner class PostViewHolder(v : android.view.View) : RecyclerView.ViewHolder(v)
+        {
 
-        private  var view: android.view.View = v
-        private lateinit var postClass : PostClass
-
-        override fun onClick(p0: android.view.View?) {
-            TODO("Not yet implemented")
-        }
+        var imageView : ImageView
 
             init {
-                v.setOnClickListener(this)
+                imageView = v.findViewById(R.id.imageItem)
             }
+
 
 
     }
