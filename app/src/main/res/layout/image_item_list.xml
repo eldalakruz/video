@@ -10,5 +10,5 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:scaleType="centerCrop"
-         />
+        app:srcCompat="@drawable/empty_image" />
 </LinearLayout>

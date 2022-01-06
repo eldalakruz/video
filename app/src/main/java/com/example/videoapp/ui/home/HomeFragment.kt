@@ -9,9 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.databinding.FragmentHomeBinding
+import com.example.videoapp.ui.post.PostFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -52,8 +52,7 @@ class HomeFragment : Fragment() {
 
         val recyclerViewUploadedImages : RecyclerView = _binding!!.imageRecyclerView
         recyclerViewUploadedImages.setHasFixedSize(true)
-        val linearLayoutManager : LinearLayoutManager = GridLayoutManager(context, 3)
-        recyclerViewUploadedImages.layoutManager = linearLayoutManager
+        recyclerViewUploadedImages.layoutManager = GridLayoutManager(context, 3)
 
         postList = ArrayList()
         postAdapter = context?.let { PostAdapter(it, postList as ArrayList<PostClass>) }
@@ -87,7 +86,7 @@ class HomeFragment : Fragment() {
 
      private fun getPicture(){
 
-         val userRef = FirebaseDatabase.getInstance().reference.child("Post")
+         val userRef = FirebaseDatabase.getInstance().reference.child("Posts")
              profileId = firebaseUser.uid
 
          userRef.addValueEventListener(

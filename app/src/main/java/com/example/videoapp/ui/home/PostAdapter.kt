@@ -40,6 +40,8 @@ class PostAdapter( private  val mContext :Context, mPost : List<PostClass> ) :
 
         var imageView : ImageView
 
+
+
             init {
                 imageView = v.findViewById(R.id.imageItem)
             }

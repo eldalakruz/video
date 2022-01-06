@@ -7,19 +7,7 @@
     tools:context=".ui.post.PostFragment">
 
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/firebaseImg"
@@ -31,12 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/browse_file_img" />
 
-    <Spinner
-        android:id="@+id/typeSpinner"
+    <ImageButton
+        android:id="@+id/browse_file_video"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_eight"
-        android:contentDescription="@string/str_choose_type"
+        android:background="@color/teal_700"
+        android:contentDescription="@string/browse_file"
+        android:src="@drawable/ic_baseline_video_call_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +40,7 @@
         android:background="@color/teal_700"
         android:contentDescription="@string/browse_file"
         android:src="@drawable/ic_take_img"
-        app:layout_constraintTop_toBottomOf="@+id/typeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/browse_file_video"
         tools:layout_editor_absoluteX="206dp" />
 
 
@@ -67,6 +57,16 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="206dp" />
+
+    <VideoView
+        android:id="@+id/firebaseVideo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="@dimen/margin_eight"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/firebaseImg" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

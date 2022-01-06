@@ -2,20 +2,15 @@ package com.example.videoapp.ui.account
 
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import com.example.videoapp.EditActivity
-import com.example.videoapp.MainActivity
 import com.example.videoapp.R
 import com.example.videoapp.SignInActivity
-import com.example.videoapp.databinding.FragmentAccountBinding
-import com.example.videoapp.ui.home.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
