@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.databinding.FragmentHomeBinding
-import com.example.videoapp.ui.post.PostFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -30,7 +29,9 @@ class HomeFragment : Fragment() {
     private lateinit var profileId : String
 
     var postList : List<PostClass>? = null
-    var postAdapter :PostAdapter? = null
+    var postAdapter : PostAdapter? = null
+    private lateinit var postVideoList : List<PostVideoClass>
+    var postVideoAdapter : PostVideoAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -60,7 +61,69 @@ class HomeFragment : Fragment() {
 
         getPicture()
 
+        _binding!!.homeVideoButton.setOnClickListener {
+
+            _binding!!.videoRecyclerView.visibility = View.VISIBLE
+            _binding!!.imageRecyclerView.visibility = View.INVISIBLE
+
+
+            getVideo()
+
+        }
+        _binding!!.homeImgButton.setOnClickListener {
+            _binding!!.videoRecyclerView.visibility = View.GONE
+            _binding!!.imageRecyclerView.visibility = View.VISIBLE
+
+        }
+
+
+
         return binding.root
+    }
+
+    private fun getVideo() {
+
+        postVideoList = ArrayList()
+        val userRef = FirebaseDatabase.getInstance().reference.child("Videos")
+        profileId = firebaseUser.uid
+
+        userRef.addValueEventListener(
+            object : ValueEventListener {
+
+                override fun  onDataChange(Snapshot: DataSnapshot) {
+
+                    (postVideoList as ArrayList<PostVideoClass>).clear()
+                    if (Snapshot.exists())
+                    {
+
+
+                        for (snapshot in Snapshot.children)
+                        {
+                            val postVideo = snapshot.getValue(PostVideoClass::class.java)!!
+                            if (postVideo.getPublisher() == profileId)
+                            {
+                                (postVideoList as ArrayList<PostVideoClass>).add(postVideo!!)
+                            }
+                            (postVideoList as ArrayList<PostVideoClass>).reverse()
+
+                        }
+                        postVideoAdapter = PostVideoAdapter(this@HomeFragment.requireContext(),
+                            postVideoList)
+                        _binding!!.videoRecyclerView.adapter = postVideoAdapter
+                    }
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@HomeFragment.requireContext(), "Network error",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+
+
+
     }
 
     private fun getUserData() {

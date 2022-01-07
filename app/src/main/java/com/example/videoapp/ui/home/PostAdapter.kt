@@ -1,12 +1,14 @@
 package com.example.videoapp.ui.home
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.R
 import com.squareup.picasso.Picasso
+import java.lang.System.load
 
 class PostAdapter( private  val mContext :Context, mPost : List<PostClass> ) :
     RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
@@ -29,6 +31,7 @@ class PostAdapter( private  val mContext :Context, mPost : List<PostClass> ) :
 
         val postClass : PostClass = mPost!![position]
         Picasso.get().load(postClass.getPost()).into(holder.imageView)
+
     }
 
     override fun getItemCount(): Int {

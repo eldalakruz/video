@@ -26,7 +26,8 @@
             android:text="@string/str_name"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:layout_marginBottom="@dimen/margin_eight"/>
+            android:layout_marginBottom="@dimen/margin_eight"
+            android:paddingStart="@dimen/margin_eight"/>
 
         <TextView
             android:id="@+id/email_text"
@@ -37,7 +38,8 @@
             android:text="@string/str_email_hint"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:layout_marginBottom="@dimen/margin_eight"/>
+            android:layout_marginBottom="@dimen/margin_eight"
+            android:paddingStart="@dimen/margin_eight"/>
 
         <Button
             android:id="@+id/editButton"

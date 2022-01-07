@@ -5,27 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.R
 import com.example.videoapp.databinding.FragmentVideosBinding
-import com.example.videoapp.ui.account.ARG_PARAM1
-import com.example.videoapp.ui.account.ARG_PARAM2
-import com.example.videoapp.ui.account.AccountFragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class VideosFragment : Fragment() {
 
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding : FragmentVideosBinding? = null
+    private lateinit var videoArrayList: ArrayList<ModelVideo>
+    private lateinit var adapterVideo: AdapterVideo
+    //private lateinit var recyclerView: RecyclerView
 
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,23 +32,46 @@ class VideosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        _binding = FragmentVideosBinding.inflate(inflater, container, false)
 
 
+       // recyclerView = view?.findViewById(R.id.videosRecyclerView)!!
+        loadVideos()
 
-        return inflater.inflate(R.layout.fragment_videos, container, false)
+        return _binding!!.root
     }
 
-        companion object {
+    private fun loadVideos() {
 
-            // TODO: Rename and change types and number of parameters
-            @JvmStatic
-            fun newInstance(param1: String, param2: String) =
-                AccountFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
+        videoArrayList = ArrayList()
+
+        val ref = FirebaseDatabase.getInstance().reference.child("Videos")
+        ref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                videoArrayList.clear()
+                for (ds in snapshot.children)
+                {
+                    val modelVideo = ds.getValue(ModelVideo::class.java)
+                    videoArrayList.add(modelVideo!!)
                 }
-        }
+                adapterVideo = AdapterVideo(this@VideosFragment.requireContext(),videoArrayList)
+
+                _binding!!.videosRecyclerView.adapter = adapterVideo
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
