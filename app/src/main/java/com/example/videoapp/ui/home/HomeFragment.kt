@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.databinding.FragmentHomeBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +30,9 @@ class HomeFragment : Fragment() {
     private lateinit var userName : TextView
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var profileId : String
+
+
+    private lateinit var mAdView: AdView
 
     var postList : List<PostClass>? = null
     var postAdapter : PostAdapter? = null
@@ -45,6 +51,12 @@ class HomeFragment : Fragment() {
 
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        MobileAds.initialize(this@HomeFragment.requireContext())
+
+        mAdView = _binding!!.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         userName = _binding!!.userNameText
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
@@ -102,7 +114,7 @@ class HomeFragment : Fragment() {
                             val postVideo = snapshot.getValue(PostVideoClass::class.java)!!
                             if (postVideo.getPublisher() == profileId)
                             {
-                                (postVideoList as ArrayList<PostVideoClass>).add(postVideo!!)
+                                (postVideoList as ArrayList<PostVideoClass>).add(postVideo)
                             }
                             (postVideoList as ArrayList<PostVideoClass>).reverse()
 

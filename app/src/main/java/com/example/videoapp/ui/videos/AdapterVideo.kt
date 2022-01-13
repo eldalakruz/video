@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.R
@@ -26,7 +27,9 @@ class AdapterVideo(private var context: Context, private var videoArrayList: Arr
     override fun onBindViewHolder(holder: HolderVideo, position: Int) {
 
         val modelVideo =videoArrayList!![position]
+        val videoTitle = modelVideo.title
         val videoUrl = modelVideo.postVideo
+        holder.videoTitle.text = videoTitle
         setVideoUrl(modelVideo, holder)
 
     }
@@ -81,5 +84,6 @@ class AdapterVideo(private var context: Context, private var videoArrayList: Arr
 
         var videoView : VideoView = itemView.findViewById(R.id.videos_view)
         var progressBar : ProgressBar = itemView.findViewById(R.id.videoProgressBar)
+        var videoTitle : TextView = itemView.findViewById(R.id.videoTittle)
     }
 }

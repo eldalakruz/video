@@ -68,5 +68,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/firebaseImg" />
 
+    <EditText
+        android:id="@+id/contentTitle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/margin_eight"
+        android:paddingStart="@dimen/margin_eight"
+        android:hint="@string/content_title"
+        android:inputType="text"
+        android:visibility="gone"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebaseImg" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

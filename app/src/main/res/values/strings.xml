@@ -22,6 +22,8 @@
     <string name="edit_update_button">Update</string>
     <string name="update_cancel_button">Cancel</string>
     <string name="selected_image_view">shows selected images</string>
+    <string name="video_tittle">Tittle</string>
+    <string name="content_title">title</string>
 
     <string-array name="list_item">
         <item>image</item>

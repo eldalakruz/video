@@ -6,9 +6,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.MediaController
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -33,6 +35,7 @@ import com.google.firebase.storage.UploadTask.*
     private var myUrl = ""
     private var selectedImage : Boolean = false
      private  var selectedVideo : Boolean = false
+     private lateinit var titleText : EditText
 
 
     // This property is only valid between onCreateView and
@@ -54,20 +57,9 @@ import com.google.firebase.storage.UploadTask.*
 
         storePost = FirebaseStorage.getInstance().reference.child("postImg")
         storeVideoPost = FirebaseStorage.getInstance().reference.child("postVideo")
-      /*  val spin = _binding!!.typeSpinner
 
 
-         ArrayAdapter.createFromResource(
-            this@PostFragment.requireContext(),
-            R.array.list_item, android.R.layout.simple_list_item_1).also {adapter ->
-
-             spin.adapter = adapter
-         }
-
-
-        spin.onItemSelectedListener = this@PostFragment */
-
-
+        titleText = _binding!!.contentTitle
 
         _binding!!.browseFileImg.setOnClickListener {
 
@@ -96,6 +88,8 @@ import com.google.firebase.storage.UploadTask.*
 
             _binding!!.firebaseImg.visibility = View.INVISIBLE
             _binding!!.firebaseVideo.visibility = View.VISIBLE
+
+
             selectVideo()
 
         }
@@ -119,6 +113,12 @@ import com.google.firebase.storage.UploadTask.*
 
          val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
          val fileRef = storeVideoPost.child(System.currentTimeMillis().toString() + ".mp4")
+
+         var videoTitle : String = _binding!!.contentTitle.text.toString()
+         if(TextUtils.isEmpty(videoTitle))
+         {
+             videoTitle = "untiled video"
+         }
 
          val uploadTask: StorageTask<*>
          uploadTask = fileRef.putFile(videoUri)
@@ -144,6 +144,7 @@ import com.google.firebase.storage.UploadTask.*
                  userMap["publisher"] = currentUserId
                  userMap["postVideo"] = myUrl
                  userMap["postId"] = postId!!
+                 userMap["title"] = videoTitle
 
 
                  ref.child(postId).setValue(userMap).addOnCompleteListener { task ->
@@ -180,6 +181,12 @@ import com.google.firebase.storage.UploadTask.*
             val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
             val fileRef = storePost.child(System.currentTimeMillis().toString() + ".img")
 
+         var imgTitle : String = _binding!!.contentTitle.text.toString()
+         if(TextUtils.isEmpty(imgTitle))
+         {
+             imgTitle = "untiled post"
+         }
+
             val uploadTask: StorageTask<*>
             uploadTask = fileRef.putFile(imageUri)
 
@@ -204,6 +211,7 @@ import com.google.firebase.storage.UploadTask.*
                     userMap["publisher"] = currentUserId
                     userMap["post"] = myUrl
                     userMap["postId"] = postId!!
+                    userMap["title"] = imgTitle
 
 
                     ref.child(postId).setValue(userMap).addOnCompleteListener { task ->
@@ -254,6 +262,7 @@ import com.google.firebase.storage.UploadTask.*
             img.setImageURI(imageUri)
             selectedVideo = false
             selectedImage = true
+            titleText.visibility = View.VISIBLE
 
         }
         else if (requestCode == 200 && resultCode == Activity.RESULT_OK){
@@ -268,6 +277,7 @@ import com.google.firebase.storage.UploadTask.*
             video.start()
             selectedImage = false
             selectedVideo = true
+            titleText.visibility = View.VISIBLE
 
 
         }

@@ -9,14 +9,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/userNameText"
@@ -27,11 +34,11 @@
                 android:paddingEnd="40dp"
                 android:textAlignment="textEnd"
                 android:textSize="24sp"
+                app:drawableStartCompat="@drawable/ic_home_account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:drawableStartCompat="@drawable/ic_home_account" />
+                app:layout_constraintTop_toBottomOf="@+id/adView" />
 
 
             <LinearLayout
@@ -51,8 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_eight"
                     android:layout_weight="1"
-                    android:text="@string/pic_button"
-                    />
+                    android:text="@string/pic_button" />
 
                 <Button
                     android:id="@+id/homeVideoButton"
@@ -60,8 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_eight"
                     android:layout_weight="1"
-                    android:text="@string/video_button"
-                    />
+                    android:text="@string/video_button" />
             </LinearLayout>
 
 
@@ -93,6 +98,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
     </ScrollView>
+
+
 </RelativeLayout>

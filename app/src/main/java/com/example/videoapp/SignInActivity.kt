@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -51,14 +52,13 @@ class SignInActivity : AppCompatActivity() {
         val password = textPassword.text.toString()
 
         when {
-            TextUtils.isEmpty(email) -> Toast.makeText(
-                this, "email is required",
-                Toast.LENGTH_SHORT
-            ).show()
-            TextUtils.isEmpty(password) -> Toast.makeText(
-                this, "password is required",
-                Toast.LENGTH_SHORT
-            ).show()
+            TextUtils.isEmpty(email) -> Toast.makeText(this, "email is required",
+                Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(password) -> Toast.makeText(this, "password is required",
+                Toast.LENGTH_SHORT).show()
+            !(Patterns.EMAIL_ADDRESS.matcher(email).matches()) -> Toast.makeText(this,
+            "enter valid email address", Toast.LENGTH_LONG).show()
+
             else -> {
 
                 val progressDialog: ProgressDialog = ProgressDialog(this@SignInActivity)
@@ -86,7 +86,9 @@ class SignInActivity : AppCompatActivity() {
                     }
                     else {
                         val message = task.exception.toString()
-                        Toast.makeText(this, "Error : $message",
+                        val short = message.split(":")
+                        val error: String = short[1]
+                        Toast.makeText(this, error,
                             Toast.LENGTH_SHORT).show()
                         FirebaseAuth.getInstance().signOut()
                         progressDialog.dismiss()

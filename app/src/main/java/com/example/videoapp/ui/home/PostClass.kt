@@ -2,9 +2,10 @@ package com.example.videoapp.ui.home
 
  class PostClass {
 
-     private var postId : String =""
+     private var postId : String = ""
      private var post : String = ""
-     private var publisher : String =""
+     private var publisher : String = ""
+     private  var title : String = ""
 
      constructor()
 
@@ -13,6 +14,7 @@ package com.example.videoapp.ui.home
          this.postId =  postId
          this.post = post
          this.publisher = publisher
+         this.title = title
      }
 
      fun getPostId() : String{
@@ -28,6 +30,11 @@ package com.example.videoapp.ui.home
      fun getPublisher() : String{
 
          return publisher
+     }
+
+     fun  getTitle() : String{
+
+         return title
      }
 
 
