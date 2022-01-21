@@ -1,7 +1,9 @@
 package com.example.videoapp.ui.home
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoapp.databinding.FragmentHomeBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -31,8 +32,8 @@ class HomeFragment : Fragment() {
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var profileId : String
 
+    lateinit var mAdView : AdView
 
-    private lateinit var mAdView: AdView
 
     var postList : List<PostClass>? = null
     var postAdapter : PostAdapter? = null
@@ -52,11 +53,26 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        MobileAds.initialize(this@HomeFragment.requireContext())
+
+        MobileAds.initialize(this@HomeFragment.requireContext()) {}
 
         mAdView = _binding!!.adView
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
+
+        mAdView.adListener = object : AdListener() {
+
+            override fun onAdFailedToLoad(error: LoadAdError) {
+                val errorDomain = error.domain
+                val errorCode = error.code
+                val errorMessage = error.message
+                val responseInfo = error.responseInfo
+                val cause = error.cause
+                Log.d("adErrors", error.toString())
+            }
+
+        }
+
 
         userName = _binding!!.userNameText
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
@@ -147,6 +163,9 @@ class HomeFragment : Fragment() {
                 override fun  onDataChange(Snapshot: DataSnapshot) {
 
                     userName.text = Snapshot.child("name").value.toString()
+                    val url = Snapshot.child("userImg").value.toString()
+                    val img = _binding!!.imageView
+                    Picasso.get().load(url).into(img)
 
 
                 }

@@ -15,30 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:adSize="BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/userNameText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="70dp"
-                android:gravity="end|center"
-                android:paddingStart="50dp"
-                android:paddingEnd="40dp"
-                android:textAlignment="textEnd"
+                android:gravity="start|center"
+                android:paddingStart="5dp"
+                android:textAlignment="textStart"
                 android:textSize="24sp"
-                app:drawableStartCompat="@drawable/ic_home_account"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adView" />
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/adView"
+                tools:text="testuser" />
 
 
             <LinearLayout
@@ -58,7 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_eight"
                     android:layout_weight="1"
-                    android:text="@string/pic_button" />
+                    android:background="@color/black"
+                    android:text="@string/pic_button"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/homeVideoButton"
@@ -66,7 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_eight"
                     android:layout_weight="1"
-                    android:text="@string/video_button" />
+                    android:background="@color/black"
+                    android:text="@string/video_button"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
 
@@ -94,6 +85,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adView"
+                tools:src="@drawable/empty_image" />
+
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

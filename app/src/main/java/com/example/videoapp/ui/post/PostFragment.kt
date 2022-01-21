@@ -110,6 +110,7 @@ import com.google.firebase.storage.UploadTask.*
          progressDialog.setTitle("Uploading")
          progressDialog.setMessage("Please wait")
          progressDialog.setCanceledOnTouchOutside(false)
+         progressDialog.show()
 
          val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
          val fileRef = storeVideoPost.child(System.currentTimeMillis().toString() + ".mp4")
@@ -160,10 +161,13 @@ import com.google.firebase.storage.UploadTask.*
 
 
              } else {
+
+                 progressDialog.dismiss()
                  Toast.makeText(
                      this@PostFragment.requireContext(),
                      "your video post added failed", Toast.LENGTH_SHORT
                  ).show()
+
              }
          }
 
@@ -177,6 +181,7 @@ import com.google.firebase.storage.UploadTask.*
             progressDialog.setTitle("Uploading")
             progressDialog.setMessage("Please wait")
             progressDialog.setCanceledOnTouchOutside(false)
+         progressDialog.show()
 
             val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
             val fileRef = storePost.child(System.currentTimeMillis().toString() + ".img")
@@ -227,6 +232,7 @@ import com.google.firebase.storage.UploadTask.*
 
 
                 } else {
+                    progressDialog.dismiss()
                     Toast.makeText(
                         this@PostFragment.requireContext(),
                         "your post added failed", Toast.LENGTH_SHORT

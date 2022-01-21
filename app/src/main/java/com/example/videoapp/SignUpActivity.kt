@@ -94,6 +94,9 @@ class SignUpActivity : AppCompatActivity() {
         userMap["uid"] = currentUserId
         userMap["name"] = name
         userMap["email"] = email
+        userMap["userImg"] = "https://firebasestorage.googleapis.com/v0/b/videos-6d6ca.appspot"+
+                ".com/o/profileImg%2Fempty-300x240.jpg?alt=media&token=dae64485-4a25-"+
+                "46d0-8d67-a63f3f575c10"
 
         userRef.child(currentUserId).setValue(userMap).addOnCompleteListener { task ->
             if (task.isSuccessful)

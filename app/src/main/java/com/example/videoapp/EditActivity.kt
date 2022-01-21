@@ -1,25 +1,35 @@
 package com.example.videoapp
 
+import android.app.Activity
+import android.app.Instrumentation
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.example.videoapp.databinding.ActivityEditBinding
 import com.example.videoapp.ui.account.AccountFragment
-import com.google.android.gms.ads.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
 
 
 class EditActivity : AppCompatActivity() {
 
-    //private lateinit var mAdView : AdView
+
 
     private lateinit var binding : ActivityEditBinding
+    private var myUrl = ""
+    private lateinit var imageUri : Uri
+    private lateinit var storeImg : StorageReference
+    private var profileImg = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,7 +72,12 @@ class EditActivity : AppCompatActivity() {
             }
         } */
 
+        storeImg = FirebaseStorage.getInstance().reference.child("profileImg")
 
+        binding.changeImg.setOnClickListener {
+
+            selectImg()
+        }
 
 
         binding.editCancelButton.setOnClickListener {
@@ -106,38 +121,118 @@ class EditActivity : AppCompatActivity() {
 
 
 
+
         }
 
-    private fun updateAccount(editName: String,editEmail: String) {
+    private fun selectImg() {
+
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+
+            imageUri = data?.data!!
+            val img = binding.imageView
+            img.setImageURI(imageUri)
+            profileImg = true
+
+        }
+
+    }
+    private fun updateAccount(editName: String, editEmail: String) {
 
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val userRef : DatabaseReference = FirebaseDatabase.getInstance().reference
             .child("Users")
 
 
-        val userMap = HashMap<String, Any>()
+        when{
+            profileImg ->{
+                val fileRef = storeImg.child(currentUserId +"img")
+
+                val uploadTask: StorageTask<*>
+                uploadTask = fileRef.putFile(imageUri)
+
+                uploadTask.continueWithTask { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {
+                            throw it
+                        }
+                    }
+                    fileRef.downloadUrl
+                }.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val downloadUri = task.result
+                        myUrl = null.toString()
+                        myUrl = downloadUri.toString()
+                        binding.imageView.setImageURI(null)
+
+                        val userMap = HashMap<String, Any>()
 
 
-        userMap["name"] = editName
-        userMap["email"] = editEmail
+                        userMap["name"] = editName
+                        userMap["email"] = editEmail
+                        userMap["userImg"] = myUrl
 
-        userRef.child(currentUserId).updateChildren(userMap).addOnCompleteListener { task ->
-            if (task.isSuccessful)
-            {
-                Toast.makeText(this@EditActivity, "updated successful",
-                    Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@EditActivity, AccountFragment::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                        Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
+
+                        userRef.child(currentUserId).updateChildren(userMap).addOnCompleteListener { task ->
+                            if (task.isSuccessful)
+                            {
+                                Toast.makeText(this@EditActivity, "updated successful",
+                                    Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this@EditActivity, AccountFragment::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                        Intent.FLAG_ACTIVITY_NEW_TASK)
+                                startActivity(intent)
+                                finish()
+                            }
+                            else
+                            {
+                                Toast.makeText(this@EditActivity, "error: update is failed ",
+                                    Toast.LENGTH_SHORT).show()
+                                profileImg = false
+                            }
+                        }
+                    }
+                }
             }
-            else
-            {
-                Toast.makeText(this@EditActivity, "error: update is failed ",
-                    Toast.LENGTH_SHORT).show()
+            else -> {
+
+                val userMap = HashMap<String, Any>()
+
+
+                userMap["name"] = editName
+                userMap["email"] = editEmail
+
+
+
+                userRef.child(currentUserId).updateChildren(userMap).addOnCompleteListener { task ->
+                    if (task.isSuccessful)
+                    {
+                        Toast.makeText(this@EditActivity, "updated successful",
+                            Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@EditActivity, AccountFragment::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else
+                    {
+                        Toast.makeText(this@EditActivity, "error: update is failed ",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
         }
+
+
+
 
         }
 

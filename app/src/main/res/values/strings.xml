@@ -24,6 +24,7 @@
     <string name="selected_image_view">shows selected images</string>
     <string name="video_tittle">Tittle</string>
     <string name="content_title">title</string>
+    <string name="user_img_change">change image</string>
 
     <string-array name="list_item">
         <item>image</item>

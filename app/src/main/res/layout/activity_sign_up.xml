@@ -15,7 +15,7 @@
         android:layout_marginTop="@dimen/margin_email"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_eight"
-        android:background="@color/white"
+        android:background="@drawable/edit_text_btn"
         android:ems="10"
         android:hint="@string/str_name"
         android:inputType="textEmailAddress"
@@ -31,7 +31,7 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_eight"
-        android:background="@color/white"
+        android:background="@drawable/edit_text_btn"
         android:ems="10"
         android:hint="@string/str_email_hint"
         android:inputType="textEmailAddress"
@@ -48,7 +48,7 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_eight"
-        android:background="@color/white"
+        android:background="@drawable/edit_text_btn"
         android:ems="10"
         android:hint="@string/str_password_hint"
         android:inputType="textPassword"
@@ -65,11 +65,11 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_eight"
-        android:background="@color/black"
+        android:background="@drawable/sing_btn"
         android:ems="10"
         android:onClick="signUp"
         android:text="@string/sign_up_button"
-        android:textColor="#757575"
+        android:textColor="#DCD9D9"
         android:textSize="18sp" />
 
     <Button
@@ -82,12 +82,12 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_eight"
-        android:background="@color/black"
+        android:background="@drawable/sing_btn"
         android:ems="10"
         android:onClick="goSignIn"
         android:text="@string/sign_in_back_button"
-        android:textColor="#757575"
-        android:textSize="18sp" />
+        android:textColor="#DCD9D9"
+        android:textSize="16sp" />
 
 
 

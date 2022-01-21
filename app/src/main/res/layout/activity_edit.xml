@@ -16,6 +16,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/empty_image" />
+
+        <TextView
+            android:id="@+id/changeImg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/user_img_change"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/newName"
             android:layout_width="match_parent"
@@ -42,6 +58,9 @@
             android:layout_height="60dp"
             android:ems="10"
             android:text="@string/edit_update_button"
+            android:layout_marginTop="@dimen/margin_eight"
+            android:textColor="@color/white"
+            android:background="@drawable/sing_btn"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="227dp" />
 
@@ -57,6 +76,8 @@
         android:layout_marginBottom="@dimen/margin_bottom"
         android:ems="10"
         android:text="@string/update_cancel_button"
+        android:textColor="@color/white"
+        android:background="@drawable/sing_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

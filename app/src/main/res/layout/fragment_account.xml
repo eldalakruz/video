@@ -21,31 +21,32 @@
             android:id="@+id/name_text"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/teal_700"
+            android:layout_marginBottom="@dimen/margin_eight"
             android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin_eight"
             android:text="@string/str_name"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginBottom="@dimen/margin_eight"
-            android:paddingStart="@dimen/margin_eight"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/email_text"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/teal_700"
+            android:layout_marginBottom="@dimen/margin_eight"
+
             android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin_eight"
             android:text="@string/str_email_hint"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginBottom="@dimen/margin_eight"
-            android:paddingStart="@dimen/margin_eight"/>
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="@string/edit_button" />
+            android:background="@drawable/sing_btn"
+            android:text="@string/edit_button"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
@@ -59,7 +60,9 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:layout_marginEnd="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_bottom"
-        android:text="@string/logout_button" />
+        android:background="@drawable/sing_btn"
+        android:text="@string/logout_button"
+        android:textColor="@color/white" />
 
 
 

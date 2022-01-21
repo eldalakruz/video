@@ -9,6 +9,9 @@ import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
@@ -17,14 +20,22 @@ class SignInActivity : AppCompatActivity() {
     lateinit var textEmail: EditText
     lateinit var textPassword: EditText
 
+    lateinit var mAdView : AdView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        MobileAds.initialize(this) {}
 
+        mAdView = findViewById(R.id.adView)
+        val  adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         textEmail = findViewById(R.id.signEmailText)
         textPassword = findViewById(R.id.signInPassword)
+
+
 
     }
 
