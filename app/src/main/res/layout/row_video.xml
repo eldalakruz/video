@@ -20,14 +20,15 @@
         android:layout_marginStart="@dimen/margin_eight"
         android:layout_marginBottom="@dimen/margin_bottom"
         android:text="@string/video_tittle"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <ProgressBar
         android:id="@+id/videoProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-
+        android:visibility="gone"
         />
 
 </RelativeLayout>

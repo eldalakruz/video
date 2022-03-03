@@ -54,7 +54,7 @@
         android:layout_marginTop="@dimen/margin_eight"
         android:background="@drawable/upload_btn"
         android:text="@string/upload_button"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="206dp" />
 

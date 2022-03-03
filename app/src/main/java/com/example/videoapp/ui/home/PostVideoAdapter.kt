@@ -36,9 +36,6 @@ class PostVideoAdapter(private val mContext : Context, mPost : List<PostVideoCla
     override fun onBindViewHolder(holder: PostVideoViewHolder, position: Int) {
 
 
-
-
-
         val postVideoClass : PostVideoClass = mPost!![position]
         val videoUrl : String = postVideoClass.getPostVideo()
 
@@ -80,6 +77,7 @@ class PostVideoAdapter(private val mContext : Context, mPost : List<PostVideoCla
             when(what){
 
                 MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START ->{
+
                     return@OnInfoListener true
                 }
                 MediaPlayer.MEDIA_INFO_BUFFERING_START ->{

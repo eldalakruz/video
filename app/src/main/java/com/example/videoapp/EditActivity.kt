@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.example.videoapp.databinding.ActivityEditBinding
@@ -98,19 +99,18 @@ class EditActivity : AppCompatActivity() {
              val editEmail = email.text.toString()
 
              when{
+                 (profileImg && TextUtils.isEmpty(editName) && TextUtils.isEmpty(editEmail)) ->
+                     profileImgUpdate()
                  TextUtils.isEmpty(editName) -> Toast.makeText(this, "name is required",
                      Toast.LENGTH_SHORT ).show()
-                 TextUtils.isEmpty(editEmail) -> Toast.makeText(this, "email is required",
+                 TextUtils.isEmpty(editEmail)->Toast.makeText(this, "email is required",
                      Toast.LENGTH_SHORT ).show()
+                 !(Patterns.EMAIL_ADDRESS.matcher(editEmail).matches())-> Toast.makeText(
+                     this, "enter valid email id", Toast.LENGTH_SHORT).show()
 
                  else ->{
-                     if (Patterns.EMAIL_ADDRESS.matcher(editEmail).matches())
-                     {
+
                          updateAccount(editName,editEmail)
-                     }
-                     else
-                         Toast.makeText(this, "enter valid email id",
-                             Toast.LENGTH_SHORT).show()
 
                  }
              }
@@ -143,6 +143,7 @@ class EditActivity : AppCompatActivity() {
         }
 
     }
+
     private fun updateAccount(editName: String, editEmail: String) {
 
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -235,7 +236,62 @@ class EditActivity : AppCompatActivity() {
 
 
         }
+        private fun profileImgUpdate(){
+            Log.d("img", "update")
+            val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+            val userRef : DatabaseReference = FirebaseDatabase.getInstance().reference
+                .child("Users")
 
+            val fileRef = storeImg.child(currentUserId +"img")
+
+            val uploadTask: StorageTask<*>
+            uploadTask = fileRef.putFile(imageUri)
+
+            uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                fileRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    myUrl = null.toString()
+                    myUrl = downloadUri.toString()
+                    binding.imageView.setImageURI(null)
+
+                    val userMap = HashMap<String, Any>()
+
+
+
+                    userMap["userImg"] = myUrl
+
+
+                    userRef.child(currentUserId).updateChildren(userMap).addOnCompleteListener { task ->
+                        if (task.isSuccessful)
+                        {
+                            Toast.makeText(this@EditActivity, "updated successful",
+                                Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@EditActivity, AccountFragment::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                    Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+                        }
+                        else
+                        {
+                            Toast.makeText(this@EditActivity, "error: update is failed ",
+                                Toast.LENGTH_SHORT).show()
+                            profileImg = false
+                        }
+                    }
+                }
+            }
+
+
+
+        }
 
 
     }

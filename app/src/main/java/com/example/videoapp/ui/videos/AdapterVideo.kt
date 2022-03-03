@@ -54,7 +54,7 @@ class AdapterVideo(private var context: Context, private var videoArrayList: Arr
 
             when(what){
                 MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START ->{
-                    holder.progressBar.visibility = View.VISIBLE
+                    holder.progressBar.visibility = View.GONE
                     return@OnInfoListener true
                 }
                 MediaPlayer.MEDIA_INFO_BUFFERING_START ->{
