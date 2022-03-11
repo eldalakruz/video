@@ -10,18 +10,25 @@
         <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_browse_file.xml" value="0.1365" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_comment.xml" value="0.1365" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1365" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_home_account.xml" value="0.1745" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1745" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19583333333333333" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_like.xml" value="0.1745" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.19583333333333333" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_share.xml" value="0.1745" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_take_img.xml" value="0.1745" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_upload.xml" value="0.1745" />
+        <entry key="..\:/VideoApp/app/src/main/res/drawable/ic_videos.xml" value="0.1745" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/profile_img_circle.xml" value="0.19583333333333333" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/sing_btn.xml" value="0.19583333333333333" />
         <entry key="..\:/VideoApp/app/src/main/res/drawable/upload_btn.xml" value="0.19583333333333333" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/activity_account.xml" value="0.1814814814814815" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/activity_edit.xml" value="0.2" />
-        <entry key="..\:/VideoApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/VideoApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/activity_sign_in.xml" value="0.18" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/activity_sign_up_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/VideoApp/app/src/main/res/layout/fragment_account.xml" value="0.15" />
+        <entry key="..\:/VideoApp/app/src/main/res/layout/fragment_account.xml" value="0.17" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/fragment_post.xml" value="0.22" />
         <entry key="..\:/VideoApp/app/src/main/res/layout/fragment_videos.xml" value="0.1814814814814815" />
